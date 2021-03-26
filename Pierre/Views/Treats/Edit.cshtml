@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Pierre.Models
+@model Pierre.Models.Treat
+
+<h1>Edit: @Model.Name</h1>
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.TreatId)
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name, new { @class="form-control"})
+  @Html.LabelFor(model => model.Amount)
+  @Html.TextBoxFor(model => model.Amount, new { @class="form-control", @type="number", @min="1"})
+
+  @Html.Label("Select Flavor:")
+  @Html.DropDownList("FlavorId")
+  <input type="submit" value="Edit" class="btn btn-warning"/>
+}
+
+<button class="btn btn-dark">@Html.ActionLink("Go back", "Details", new { id = Model.TreatId })</button>

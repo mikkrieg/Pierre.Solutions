@@ -24,6 +24,9 @@ namespace Pierre.Models
     Bitter,
     Tangy,
     Sour,
-    Spicy
+    Spicy,
+    Savory,
+    Creamy,
+    Fluffy
   }
 }

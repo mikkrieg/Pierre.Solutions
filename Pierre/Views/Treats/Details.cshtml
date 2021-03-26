@@ -1,0 +1,48 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Pierre.Models
+@model Pierre.Models.Treat
+@using System.Security.Claims
+
+<h1 class="text-center">Treat: @Model.Name</h1>
+<h3>Amount: @Model.Amount</h3>
+
+@if (@Model.JoinEntities.Count == 0)
+{
+  <h4>The @Model.Name treat doesn't taste like anything!</h4>
+}
+else
+{
+  <h3>Flavors:</h3>
+  <ol>
+    @foreach (var join in Model.JoinEntities)
+    {
+      <li>@join.Flavor.Name</li>
+      @if (User.Identity.IsAuthenticated)
+      {
+        @using (Html.BeginForm("DeleteFlavor", "Treats"))
+        {
+          @Html.Hidden("joinId", @join.FlavorTreatId)
+          <input type="submit" value="Delete" class="btn btn-danger"/>
+        }
+      }
+    }
+  </ol>
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+  <button class="btn btn-dark">@Html.ActionLink("Edit treat", "Edit", new { id = @Model.TreatId })</button>
+  <button class="btn btn-danger">@Html.ActionLink("Delete treat", "Delete", new { id = @Model.TreatId })</button>
+  <button class="btn btn-dark">@Html.ActionLink("Add flavor", "AddFlavor", new { id = @Model.TreatId })</button>
+  <button class="btn btn-dark">@Html.ActionLink("Go back", "Index")</button>
+}
+else
+{
+  <p>Create an account to make your own treats and flavors!</p>
+  <button class="btn btn-success">@Html.ActionLink("Register", "Register", "Account")</button>
+  <button class="btn btn-dark">@Html.ActionLink("Go back", "Index")</button>
+}
+
