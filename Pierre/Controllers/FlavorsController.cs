@@ -23,14 +23,9 @@ namespace Pierre.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Flavor flavor, int treatId)
+    public ActionResult Create(Flavor flavor)
     {
       _db.Flavors.Add(flavor);
-      _db.SaveChanges();
-      if(treatId != 0)
-      {
-        _db.FlavorTreat.Add(new FlavorTreat() { TreatId = treatId, FlavorId = flavor.FlavorId });
-      }
       _db.SaveChanges();
       return RedirectToAction("Index", "Treats");
     }
