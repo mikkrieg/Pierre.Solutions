@@ -1,0 +1,18 @@
+  
+@{
+  Layout = "_Layout";
+}
+
+@model Pierre.Models.Flavor
+
+<h1>Add a treat to @Model.Name</h1>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.FlavorId)
+  @Html.Label("Select an existing Treat")
+  @Html.DropDownList("TreatId")
+  <input type="submit" value="Add" class="btn btn-warning"/>
+}
+
+<button class="btn btn-dark">@Html.ActionLink("Go back", "Details", new { id = @Model.FlavorId })</button>

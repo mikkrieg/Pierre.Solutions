@@ -16,4 +16,14 @@ namespace Pierre.Models
 
     public virtual ICollection<FlavorTreat> JoinEntities { get; set; }
   }
+
+  public enum Profile
+  {
+    Sweet,
+    Salty,
+    Bitter,
+    Tangy,
+    Sour,
+    Spicy
+  }
 }
