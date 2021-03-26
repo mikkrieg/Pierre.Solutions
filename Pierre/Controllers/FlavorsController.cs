@@ -5,9 +5,14 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace Pierre.Controllers 
 {
+  [Authorize]
   public class FlavorsController : Controller 
   {
     private readonly PierreContext _db;
@@ -17,11 +22,13 @@ namespace Pierre.Controllers
       _db = db;
     }
 
+    
     public ActionResult Create()
     {
       return View();
     }
 
+    
     [HttpPost]
     public ActionResult Create(Flavor flavor)
     {
@@ -30,6 +37,7 @@ namespace Pierre.Controllers
       return RedirectToAction("Index", "Treats");
     }
 
+    [AllowAnonymous]
     public ActionResult Details (int id)
     {
       var thisFlavor = _db.Flavors
