@@ -1,0 +1,41 @@
+@{
+  Layout = "_Layout";
+}
+
+@using Pierre.Models
+
+<h1 class="text-center" id="home-h1">Home</h1>
+
+@if(Model["Treats"].Count == 0)
+{
+  <h3 class="text-center">No Treats</h3>
+}
+else
+{
+  <h3 class="text-center">Treats: </h3>
+<ol>
+  @foreach (Treat treat in @Model["Treats"])
+  {
+    <li>@Html.ActionLink($"{treat.Name}", "Details", new { id = treat.TreatId })</li>
+  }
+</ol>
+}
+
+@if(Model["Flavors"].Count == 0)
+{
+  <h3 class="text-center">No Flavors</h3>
+}
+else
+{
+  <h3 class="text-center">Flavors:</h3>
+<ol>
+  @foreach (flavor flavor in @Model["Flavors"])
+  {
+    <li>@Html.ActionLink($"{flavor.Model}", "Details", "Flavors", new { id = flavor.flavorId })</li>
+  }
+</ol>
+}
+
+<button class="btn btn-dark create-button">@Html.ActionLink("Create Treat", "Create")</button>
+
+<button class="btn btn-dark create-button">@Html.ActionLink("Create Flavor", "Create", "Flavors")</button>
