@@ -5,7 +5,7 @@
 @using Pierre.Models
 @model Pierre.Models.Treat
 
-<h1 class="text-center">Create Engineer</h1>
+<h1 class="text-center">Create Treat</h1>
 
 @using (Html.BeginForm())
 {
@@ -15,7 +15,7 @@
   @Html.LabelFor(model => model.Amount)
   @Html.TextBoxFor(model => model.Amount, new { @class="form-control", @required="required", @type="number", @min="1"})
   
-  <input type="submit" value="Create" class="btn btn-success create-btn"/>
+  <input type="submit" value="Create" class="btn btn-success"/>
 }
 
-<button class="btn btn-dark create-btn">@Html.ActionLink("Back to home", "Index")</button>
+<button class="btn btn-dark">@Html.ActionLink("Back to home", "Index")</button>

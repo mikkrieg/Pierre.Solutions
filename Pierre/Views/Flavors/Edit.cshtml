@@ -11,9 +11,10 @@
   @Html.HiddenFor(model => model.FlavorId)
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name, new { @class="form-control" })
-
   @Html.LabelFor(model => model.FlavorProfile)
   @Html.DropDownListFor(model => model.FlavorProfile, new SelectList(Enum.GetValues(typeof(Profile))), "Select Flavor Profile", new { @class="form-control"})
+  @Html.Label("Select an existing Treat")
+  @Html.DropDownList("TreatId")
 
   <input type="submit" value="Edit" class="btn btn-warning"/>
 }

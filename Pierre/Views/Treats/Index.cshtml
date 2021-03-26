@@ -3,8 +3,9 @@
 }
 
 @using Pierre.Models
+@using System.Security.Claims
 
-<h1 class="text-center" id="home-h1">Home</h1>
+<h1 class="text-center">Home</h1>
 
 @if(Model["Treats"].Count == 0)
 {
@@ -36,6 +37,15 @@ else
 </ol>
 }
 
-<button class="btn btn-dark create-button">@Html.ActionLink("Create Treat", "Create")</button>
+@if (User.Identity.IsAuthenticated)
+{
+  <button class="btn btn-dark">@Html.ActionLink("Create Treat", "Create")</button>
 
-<button class="btn btn-dark create-button">@Html.ActionLink("Create Flavor", "Create", "Flavors")</button>
+  <button class="btn btn-dark">@Html.ActionLink("Create Flavor", "Create", "Flavors")</button>
+  
+  <button class="btn btn-dark">@Html.ActionLink("Account", "Index", "Account")</button>
+}
+else
+{
+  <button class="btn btn-dark">@Html.ActionLink("Create account", "Index", "Account")</button>  
+}

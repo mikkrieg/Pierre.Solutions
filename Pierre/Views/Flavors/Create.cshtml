@@ -13,7 +13,7 @@
       @Html.LabelFor(model => model.FlavorProfile)
       @Html.DropDownListFor(model => model.FlavorProfile,  new SelectList(Enum.GetValues(typeof(Profile))), "Select Flavor Profile", new { @class="form-control", @required="required"})
 
-      <input type="submit" value="Create" class="btn btn-success create-btn"/>
+      <input type="submit" value="Create" class="btn btn-success"/>
     }
 
-<button class="btn btn-dark create-btn">@Html.ActionLink("Back to home", "Index", "Treats")</button>
+<button class="btn btn-dark">@Html.ActionLink("Back to home", "Index", "Treats")</button>
