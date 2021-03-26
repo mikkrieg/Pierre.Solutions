@@ -1,0 +1,30 @@
+button>a {
+  display: inline-block;     
+  position: relative;    
+  z-index: 1;     
+  padding: .8em;     
+  margin: -.8em; 
+}
+
+footer {
+  position:fixed;
+  bottom:0;
+  left: 46%;
+  width:100%;
+  color:#000;
+  padding:8px;
+}
+
+li>a:hover{
+  color: #000;
+  text-decoration: underline;
+}
+
+button>a, a:hover{
+  color: #fff;
+  text-decoration: none;
+}
+
+li>a{
+  color: #000;
+}
