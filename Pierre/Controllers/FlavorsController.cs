@@ -16,9 +16,11 @@ namespace Pierre.Controllers
   public class FlavorsController : Controller 
   {
     private readonly PierreContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public FlavorsController(PierreContext db)
+    public FlavorsController(UserManager<ApplicationUser> userManager, PierreContext db)
     {
+      _userManager = userManager;
       _db = db;
     }
 
@@ -30,8 +32,11 @@ namespace Pierre.Controllers
 
     
     [HttpPost]
-    public ActionResult Create(Flavor flavor)
+    public async Task<ActionResult> Create(Flavor flavor)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
+      flavor.User = currentUser;
       _db.Flavors.Add(flavor);
       _db.SaveChanges();
       return RedirectToAction("Index", "Treats");
